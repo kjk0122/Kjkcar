@@ -32,7 +32,7 @@ public class Bus {//        - 포함해야 할 정보
     public int fuelWarn(int f) {
         this.fuelAmount = f;
         if (this.fuelAmount <= 0) {
-            current = status[1];
+            this.current = status[1];
             System.out.println("현재 연료가 "+this.fuelAmount+"이라서 장비를 정지합니다.\n"+this.current);
             return 1;
         } else if (this.fuelAmount < 10) {
@@ -43,7 +43,7 @@ public class Bus {//        - 포함해야 할 정보
         return 0;
     }
     public int overWarn(int Customer) {
-        if(this.current=="운행") {
+        if(this.current.equals("운행")) {
             this.Customer = Customer;
             if (this.Customer > this.maxCustomer) {
                 System.out.println("정원 초과!!!  "+ this.Customer);
