@@ -6,7 +6,16 @@ public class Bus {//        - 포함해야 할 정보
     int fare;           //        3. 요금
     int busNumber;  //        4. 버스 번호
     int fuelAmount; //        5. 주유량
-    int speed;     //        6. 현재 속도
-    String[] status = {//        7. 상태
-    "운행", "차고지 행"}; //          1.  운행, 차고지 행
+    int speed=0;     //        6. 현재 속도
+    String[] status = {"운행", "차고지 행"}; //          1.  운행, 차고지 행
+
+
+    public int[] setCustomer(int min, int max){
+        this.minCustomer=min;
+        this.maxCustomer=max;
+        return new int[]{minCustomer, maxCustomer};
+    }
+
+
+
 }
