@@ -43,7 +43,7 @@ public class Bus {//        - 포함해야 할 정보
         return 0;
     }
     public int overWarn(int Customer) {
-        if(this.current=="운행") {
+        if(this.current.equals("운행")) {
             this.Customer = Customer;
             if (this.Customer > this.maxCustomer) {
                 System.out.println("정원 초과!!!  "+ this.Customer);
