@@ -1,36 +1,31 @@
 package car;
 
-import com.sun.nio.sctp.PeerAddressChangeNotification;
-
 import java.util.UUID;
 
 public class Bus {//        - 포함해야 할 정보
     int maxCustomer;//        1.  승객수
     int Customer; //        2. 현재 승객수
     int fare;           //        3. 요금
-    String busuid;  //        4. 버스 번호
 
     int fuelAmount=30; //        5. 주유량
     int speed = 0;     //        6. 현재 속도
     String[] status = {"운행", "차고지 행"}; //          1.  운행, 차고지 행
-    String current = "";  //현재상태
+    String current = status[0];  //현재상태
+    String uuid = UUID.randomUUID().toString();
 
-    public void setInfo(int max, int fare, int spd) {
+    public void setInfo(int max, int fare, int fuel, int spd) {
         this.maxCustomer = max;
         this.fare = fare;
+        this.fuelAmount=fuel;
         this.speed=spd;
-        String uuid = UUID.randomUUID().toString();
-        this.busuid=uuid; this.current = status[0];
-        System.out.println("임시 아이디가 생성되었습니다");
     }
 
-    public int getSpeed() {
-        return this.speed;
-    }
 
     public void chSpd(int ud) {
         if(this.totalWarn(this.Customer,this.fuelAmount)==0){
+            System.out.println("기존 속도: "+this.speed);
             this.speed=this.speed+ud;
+            System.out.println("변경된 속도: "+this.speed);
         }
     }
 
@@ -41,9 +36,9 @@ public class Bus {//        - 포함해야 할 정보
             System.out.println("현재 연료가 "+this.fuelAmount+"이라서 장비를 정지합니다.\n"+this.current);
             return 1;
         } else if (this.fuelAmount < 10) {
-            System.out.println("주유가 필요하다");
+            System.out.println("주유가 필요하다! 지금 기름 양: "+this.fuelAmount);
         } else{
-            System.out.println("기름 양 OK" + this.fuelAmount);
+            System.out.println("OK! 기름 양: " + this.fuelAmount);
         }
         return 0;
     }
@@ -51,7 +46,8 @@ public class Bus {//        - 포함해야 할 정보
         if(this.current=="운행") {
             this.Customer = Customer;
             if (this.Customer > this.maxCustomer) {
-                System.out.println("정원 초과");
+                System.out.println("정원 초과!!!  "+ this.Customer);
+                System.out.println("수용가능최대인원: " + this.maxCustomer);
                 return 1;
             }else {
                 System.out.println("잔여석 있음");
@@ -68,5 +64,6 @@ public class Bus {//        - 포함해야 할 정보
             System.out.println("차에 문제가 있습니다!");
             return 1;
         }
+
     }
 }
